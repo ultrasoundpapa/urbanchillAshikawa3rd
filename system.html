@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--
+  ============================================================
+  杉田 亘 — 仕事の系統図 / Working System Map
+  ------------------------------------------------------------
+  用途：登壇資料、取材対応、自分の仕事の棚卸し。
+        サイト（index.html）からはリンクしていません。単体で開きます。
+
+  ▼ 読み方
+     左から右へ、依頼が入ってから届くまでの流れです。
+     中央の「判断」を全部の線が必ず通ります。ここが系統図の肝です。
+
+  ▼ 編集
+     [要記入] が、私が事実を知らない箇所です。埋めてください。
+     ノードを増やすときは <li class="node"> をコピーするだけです。
+     色は :root の3つの変数だけで変わります。
+
+  ▼ 印刷
+     Ctrl/Cmd + P → 横向き（Landscape）→ 背景グラフィックを有効に。
+  ============================================================
+-->
+
+<title>杉田 亘｜仕事の系統図</title>
+<meta name="robots" content="noindex, nofollow"><!-- 検索に出さない -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Shippori+Mincho:wght@400;500&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ink:      #070708;
+  --ink-2:    #0c0c0e;
+  --paper:    #efece6;
+  --paper-2:  #b6b1a8;
+  --paper-3:  #837e75;
+  --paper-4:  #4a4740;
+  --line:     rgba(239,236,230,0.14);
+  --line-2:   rgba(239,236,230,0.30);
+
+  /* 三系統の識別色。彩度は極力落とし、明度差を主にしている。
+     サイト本体はモノクロームだが、系統図は読み取りが目的なので
+     三つを区別できる最小限の色味だけを許している。 */
+  --field:  #9fb0bd;   /* 現場：冷たい灰青 */
+  --sound:  #bda98f;   /* 音：温かい灰褐 */
+  --words:  #a9b09c;   /* 言葉：くすんだ灰緑 */
+
+  --serif-en: "Cormorant Garamond", serif;
+  --serif-jp: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --sans-jp:  "Zen Kaku Gothic New", "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans-jp);
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { margin: 0; font-weight: 400; }
+p, ul, ol { margin: 0; padding: 0; }
+li { list-style: none; }
+
+/* ── 見出し ─────────────────────────────────────────────── */
+.head {
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 4vw, 3.5rem) 0;
+  max-width: 1100px;
+}
+.head__title {
+  font-family: var(--serif-jp);
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+.head__sub {
+  margin-top: 0.6rem;
+  font-family: var(--serif-en);
+  font-size: 0.9rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--paper-3);
+}
+.head__lead {
+  margin-top: 1.8rem;
+  color: var(--paper-2);
+  line-height: 2.1;
+  max-width: 62ch;
+}
+.head__lead strong { font-weight: 400; color: var(--paper); }
+
+/* 凡例 */
+.legend {
+  display: flex; flex-wrap: wrap; gap: 0.6rem 2rem;
+  margin-top: 2rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--paper-2);
+}
+.legend span { display: flex; align-items: center; gap: 0.6rem; }
+.legend i {
+  width: 18px; height: 2px; display: block;
+  background: var(--paper-4);
+}
+.legend .f i { background: var(--field); }
+.legend .s i { background: var(--sound); }
+.legend .w i { background: var(--words); }
+
+/* ── 図版本体：横スクロールする一枚もの ─────────────────── */
+.board {
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+  padding: 0 clamp(1.5rem, 4vw, 3.5rem) clamp(3rem, 6vw, 5rem);
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+/* 横＝系統、縦＝工程 の格子。
+   列ごとに縦積みすると列の高さがばらけて読めなくなるため、
+   三系統を行として揃え、どの工程がどの系統かを縦横で特定できるようにしている。 */
+.flow {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(186px, 1fr));
+  gap: 0 clamp(0.8rem, 1.4vw, 1.5rem);
+  min-width: 1620px;      /* これ以下では横スクロールさせる */
+  align-items: start;
+}
+
+/* 格子の位置は自動配置に任せず、すべて明示する。
+   自動配置だと行をまたぐセルの直後から列がずれる。 */
+.c1 { grid-column: 1; } .c2 { grid-column: 2; } .c3 { grid-column: 3; } .c4 { grid-column: 4; }
+.c5 { grid-column: 5; } .c6 { grid-column: 6; } .c7 { grid-column: 7; } .c8 { grid-column: 8; }
+.r2 { grid-row: 2; } .r3 { grid-row: 3; } .r4 { grid-row: 4; }
+
+/* 行をまたぐセル（入口・判断・届け先） */
+.span3 { grid-row: 2 / span 3; }
+
+/* 行の区切り。囲まず、横一本の罫で系統を分ける */
+.row-f, .row-s, .row-w { padding-top: 1.3rem; padding-bottom: 1.6rem; }
+.row-s, .row-w { border-top: 1px solid var(--line); }
+.span3 { padding-top: 1.3rem; }
+
+/* 行の見出し（振り分け列の先頭） */
+.rowlabel {
+  display: flex; align-items: baseline; gap: 0.7rem;
+  padding: 0.55rem 0.8rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid var(--line);
+  font-family: var(--serif-jp);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+.rowlabel em {
+  font-style: normal;
+  font-family: var(--serif-en);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--paper-3);
+}
+.rowlabel.f { border-left: 2px solid var(--field); }
+.rowlabel.s { border-left: 2px solid var(--sound); }
+.rowlabel.w { border-left: 2px solid var(--words); }
+
+/* 列見出し */
+.col__head {
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.4rem;
+  border-bottom: 1px solid var(--line-2);
+}
+.col__no {
+  font-family: var(--serif-en);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--paper-3);
+}
+.col__name {
+  margin-top: 0.3rem;
+  font-family: var(--serif-jp);
+  font-size: 15px;
+  letter-spacing: 0.1em;
+}
+.col__note {
+  margin-top: 0.4rem;
+  font-size: 10.5px;
+  line-height: 1.8;
+  color: var(--paper-3);
+  letter-spacing: 0.06em;
+}
+
+/* ノード */
+.stack { display: flex; flex-direction: column; gap: 0.7rem; }
+
+.node {
+  position: relative;
+  padding: 0.75rem 0.85rem 0.8rem;
+  border: 1px solid var(--line);
+  border-left-width: 2px;
+  border-left-color: var(--paper-4);
+  background: var(--ink-2);
+}
+.node h4 {
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  line-height: 1.7;
+}
+.node p {
+  margin-top: 0.3rem;
+  font-size: 10.5px;
+  line-height: 1.85;
+  color: var(--paper-2);
+  letter-spacing: 0.03em;
+}
+
+/* 系統ごとの左罫 */
+.node.f { border-left-color: var(--field); }
+.node.s { border-left-color: var(--sound); }
+.node.w { border-left-color: var(--words); }
+
+/* 未記入の印。埋め忘れを目で拾えるようにする */
+.todo {
+  display: inline-block;
+  margin-top: 0.35rem;
+  padding: 0.1rem 0.45rem;
+  border: 1px dashed var(--line-2);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: var(--paper-3);
+}
+
+/* 中心の判断ノード。ここだけ扱いを変える */
+.node--core {
+  border: 1px solid var(--line-2);
+  border-left-width: 1px;
+  background: linear-gradient(160deg, rgba(239,236,230,0.07), transparent 70%);
+  padding: 1.1rem 1rem 1.2rem;
+}
+.node--core h4 {
+  font-family: var(--serif-jp);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.node--core .rule {
+  margin: 0.8rem 0;
+  height: 1px;
+  background: var(--line);
+}
+.node--core ol { counter-reset: c; }
+.node--core ol li {
+  counter-increment: c;
+  display: flex; gap: 0.6rem;
+  font-size: 10.5px;
+  line-height: 1.85;
+  color: var(--paper-2);
+}
+.node--core ol li::before {
+  content: counter(c, lower-roman);
+  font-family: var(--serif-en);
+  color: var(--paper-3);
+  min-width: 1.2em;
+}
+
+
+
+/* 三系統共通のチェック。格子の外に置き、共通項が多いことを形で示す */
+.common {
+  min-width: 1620px;
+  margin-top: 2rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line-2);
+}
+.common__label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--paper-3);
+  margin-bottom: 0.9rem;
+}
+.common__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem; max-width: 1100px; }
+.common__list li { padding: 0.75rem 0.85rem; border: 1px solid var(--line); background: var(--ink-2); }
+.common__list h4 { font-size: 12.5px; letter-spacing: 0.06em; }
+.common__list p { margin-top: 0.3rem; font-size: 10.5px; line-height: 1.85; color: var(--paper-2); }
+
+/* 脚注 */
+.foot {
+  padding: 0 clamp(1.5rem, 4vw, 3.5rem) clamp(3rem, 6vw, 4rem);
+  max-width: 1100px;
+  color: var(--paper-3);
+  font-size: 11px;
+  line-height: 2;
+  letter-spacing: 0.06em;
+}
+.foot h3 {
+  font-family: var(--serif-jp);
+  font-size: 13px;
+  color: var(--paper);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.7rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line);
+}
+.foot ul li { padding-left: 1.1rem; position: relative; }
+.foot ul li::before {
+  content: ""; position: absolute; left: 0; top: 0.95em;
+  width: 5px; height: 1px; background: var(--line-2);
+}
+
+/* 印刷 */
+@media print {
+  body { background: #fff; color: #111; }
+  .node, .branch, .node--core { background: none; border-color: #bbb; }
+  .node p, .col__note, .foot, .head__lead { color: #444; }
+  .board { overflow: visible; }
+  .common { min-width: 0; }
+  .flow { min-width: 0; grid-template-columns: repeat(8, 1fr); gap: 0 5px; }
+  .row-s, .row-w { border-top-color: #ccc; }
+  .head, .foot { max-width: none; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="head">
+  <h1 class="head__title">仕事の系統図</h1>
+  <p class="head__sub">Wataru Sugita — Working System</p>
+
+  <p class="head__lead">
+    依頼が入ってから、受け取る人に届くまでの流れです。
+    左から右へ一列に読みます。三つの領域は途中で枝分かれしますが、
+    <strong>分かれる前に必ず同じ判断を一度通ります。</strong>
+    この図でいちばん重要なのは、中心に置かれているのが道具ではなく基準だ、という点です。
+  </p>
+
+  <p class="legend">
+    <span class="f"><i></i>現場 ／ 医療機器</span>
+    <span class="s"><i></i>音 ／ AI音楽</span>
+    <span class="w"><i></i>言葉 ／ 執筆・Podcast</span>
+    <span><i></i>共通</span>
+  </p>
+</header>
+
+
+<div class="board">
+<div class="flow">
+
+  <!-- ══ 行 1：列見出し ════════════════════════════════════ -->
+  <div class="col__head"><p class="col__no">01</p><h2 class="col__name">入口</h2><p class="col__note">依頼が入ってくる経路</p></div>
+  <div class="col__head"><p class="col__no">02</p><h2 class="col__name">判断</h2><p class="col__note">すべての線がここを通る</p></div>
+  <div class="col__head"><p class="col__no">03</p><h2 class="col__name">振り分け</h2><p class="col__note">三系統。優劣はない</p></div>
+  <div class="col__head"><p class="col__no">04</p><h2 class="col__name">工程</h2><p class="col__note">実際にやっている順番</p></div>
+  <div class="col__head"><p class="col__no">05</p><h2 class="col__name">道具</h2><p class="col__note">同じ机の上に並んでいる</p></div>
+  <div class="col__head"><p class="col__no">06</p><h2 class="col__name">チェック</h2><p class="col__note">出す前に必ず通す関所</p></div>
+  <div class="col__head"><p class="col__no">07</p><h2 class="col__name">出口</h2><p class="col__note">手を離れる形</p></div>
+  <div class="col__head"><p class="col__no">08</p><h2 class="col__name">届け先</h2><p class="col__note">誰の負担が減ったか</p></div>
+
+  <!-- ══ 列 01：入口（三行をまたぐ） ═══════════════════════ -->
+  <ul class="stack span3 c1">
+    <li class="node"><h4>メール</h4><p>w.sugita@gmail.com<br>サイトからの主たる導線</p></li>
+    <li class="node"><h4>Podcast・YouTube</h4><p>聴いた人・観た人からの連絡</p></li>
+    <li class="node"><h4>note</h4><p>文章を読んでの依頼。寄稿・取材が多い</p></li>
+    <li class="node"><h4>紹介</h4><p>既存の関係からの持ち込み</p><span class="todo">要記入：主な紹介元</span></li>
+    <li class="node"><h4>勤務先の商談</h4><p>医療機関からの引き合い</p></li>
+  </ul>
+
+  <!-- ══ 列 02：判断（三行をまたぐ。図の中心） ═════════════ -->
+  <ul class="stack span3 c2">
+    <li class="node node--core">
+      <h4>受け取る側の負担を、<br>どれだけ減らせるか。</h4>
+      <div class="rule"></div>
+      <ol>
+        <li>正確であること（事実と推測を分ける）</li>
+        <li>静かであること（声量ではなく密度）</li>
+        <li>続けられること（一度きりにしない）</li>
+      </ol>
+    </li>
+    <li class="node"><h4>断る基準</h4><p>所属先の規定に触れるもの／続けられない量／相手の負担が減らないもの</p></li>
+    <li class="node"><h4>見積もり前の相談</h4><p>条件が決まっていない段階で受ける。ここで要件を一緒に決める</p></li>
+    <li class="node"><h4>ここから三つに分かれる</h4><p>分かれた先でも、戻ってくるのはこの基準</p></li>
+  </ul>
+
+  <!-- ══ 行 2：FIELD 現場 ══════════════════════════════════ -->
+  <div class="row-f c3 r2">
+    <div class="rowlabel f"><em>Field</em>現場</div>
+    <ul class="stack">
+      <li class="node f"><h4>医療機器の導入</h4><p>提案から定着まで</p></li>
+      <li class="node f"><h4>営業まわりの相談</h4><p>提案設計・院内コミュニケーション</p></li>
+    </ul>
+  </div>
+  <div class="row-f c4 r2"><ul class="stack">
+    <li class="node f"><h4>01 ヒアリング</h4><p>誰が困っているかを特定する</p></li>
+    <li class="node f"><h4>02 エビデンス整理</h4><p>事実と推測を分けて並べ直す</p></li>
+    <li class="node f"><h4>03 院内提案資料</h4><p>読む人ごとに出し分ける</p></li>
+    <li class="node f"><h4>04 合意形成</h4><p>医師・技師・購買・経営</p></li>
+    <li class="node f"><h4>05 稟議の伴走</h4><p>社内の言葉に翻訳する</p></li>
+    <li class="node f"><h4>06 立ち上げ・定着</h4><p>使われる状態になるまで</p></li>
+  </ul></div>
+  <div class="row-f c5 r2"><ul class="stack">
+    <li class="node f"><h4>資料作成</h4><span class="todo">要記入：使用ソフト</span></li>
+    <li class="node f"><h4>文献・エビデンス</h4><span class="todo">要記入：参照先</span></li>
+  </ul></div>
+  <div class="row-f c6 r2"><ul class="stack">
+    <li class="node f"><h4>所属先の規定</h4><p>企業名・製品名・症例の扱い。抵触するものは出さない</p></li>
+    <li class="node f"><h4>読む人ごとに成立するか</h4><p>医師に通る資料が、購買に通るとは限らない</p></li>
+  </ul></div>
+  <div class="row-f c7 r2"><ul class="stack">
+    <li class="node f"><h4>提案資料</h4></li>
+    <li class="node f"><h4>導入された機器</h4><p>これが本当の成果物</p></li>
+    <li class="node f"><h4>運用の手順</h4></li>
+  </ul></div>
+
+  <!-- ══ 列 08：届け先（三行をまたぐ） ═════════════════════ -->
+  <ul class="stack span3 c8">
+    <li class="node f"><h4>医療機関</h4><p>医師・技師・購買・経営。最終的には患者</p></li>
+    <li class="node s"><h4>クライアント</h4><p>店舗・ブランド・映像制作</p></li>
+    <li class="node s"><h4>リスナー</h4><p>Spotify・YouTube</p></li>
+    <li class="node w"><h4>読者</h4><p>note・寄稿媒体</p></li>
+    <li class="node w"><h4>主催者・参加者</h4><p>カンファレンス・企業研修</p></li>
+    <li class="node"><h4>次の依頼</h4><p>届いた先から 01 に戻る。この循環が実績になる</p></li>
+  </ul>
+
+  <!-- ══ 行 3：SOUND 音 ════════════════════════════════════ -->
+  <div class="row-s c3 r3">
+    <div class="rowlabel s"><em>Sound</em>音</div>
+    <ul class="stack">
+      <li class="node s"><h4>楽曲制作</h4><p>オリジナル／依頼</p></li>
+      <li class="node s"><h4>BGM・サウンドロゴ</h4><p>店舗・映像・イベント</p></li>
+    </ul>
+  </div>
+  <div class="row-s c4 r3"><ul class="stack">
+    <li class="node s"><h4>01 世界観のヒアリング</h4><p>言葉で輪郭を決める</p></li>
+    <li class="node s"><h4>02 生成・素材出し</h4><p>数を出す。この段階では選ばない</p></li>
+    <li class="node s"><h4>03 選別</h4><p>残すものと捨てるものを決める</p></li>
+    <li class="node s"><h4>04 編曲・仕上げ</h4><p>引き算で整える</p></li>
+    <li class="node s"><h4>05 試作提示</h4><p>進める前に見てもらう</p></li>
+  </ul></div>
+  <div class="row-s c5 r3"><ul class="stack">
+    <li class="node s"><h4>生成AI</h4><p>作詞・作曲・編曲の素材出し</p><span class="todo">要記入：使用サービス名</span></li>
+    <li class="node s"><h4>DAW・編集</h4><span class="todo">要記入：使用ソフト</span></li>
+    <li class="node s"><h4>録音・モニター</h4><p>マイク、ヘッドフォン</p></li>
+  </ul></div>
+  <div class="row-s c6 r3"><ul class="stack">
+    <li class="node s"><h4>生成物の出自</h4><p>既存作品に似ていないか。プロンプトと日付を記録に残す</p></li>
+    <li class="node s"><h4>自分で選んだか</h4><p>生成に任せきった箇所が残っていないか</p></li>
+  </ul></div>
+  <div class="row-s c7 r3"><ul class="stack">
+    <li class="node s"><h4>楽曲</h4><p>配信・納品</p></li>
+    <li class="node s"><h4>BGM・サウンドロゴ</h4></li>
+  </ul></div>
+
+  <!-- ══ 行 4：WORDS 言葉 ══════════════════════════════════ -->
+  <div class="row-w c3 r4">
+    <div class="rowlabel w"><em>Words</em>言葉</div>
+    <ul class="stack">
+      <li class="node w"><h4>エッセイ・寄稿</h4><p>連載／単発</p></li>
+      <li class="node w"><h4>Podcast</h4><p>自番組／ゲスト出演</p></li>
+      <li class="node w"><h4>言語化</h4><p>コンセプト・ステートメント</p></li>
+      <li class="node w"><h4>登壇</h4><p>講演・研修・勉強会</p></li>
+    </ul>
+  </div>
+  <div class="row-w c4 r4"><ul class="stack">
+    <li class="node w"><h4>01 観察・記録</h4><p>その場で書き留める</p></li>
+    <li class="node w"><h4>02 下書き</h4><p>結論を急がない</p></li>
+    <li class="node w"><h4>03 推敲</h4><p>一行を消す判断</p></li>
+    <li class="node w"><h4>04 収録／入稿</h4><span class="todo">要記入：実際の手順</span></li>
+  </ul></div>
+  <div class="row-w c5 r4"><ul class="stack">
+    <li class="node w"><h4>手書きノート</h4><p>最初の一行はここで書く</p></li>
+    <li class="node w"><h4>note</h4><p>執筆と公開</p></li>
+    <li class="node w"><h4>収録環境</h4><span class="todo">要記入：機材・編集</span></li>
+  </ul></div>
+  <div class="row-w c6 r4"><ul class="stack">
+    <li class="node w"><h4>相手が読んでも成立するか</h4><p>個人が特定される記述を消す</p></li>
+    <li class="node w"><h4>迷いを残せているか</h4><p>結論に寄せすぎていないか</p></li>
+  </ul></div>
+  <div class="row-w c7 r4"><ul class="stack">
+    <li class="node w"><h4>エッセイ</h4></li>
+    <li class="node w"><h4>Podcast の回</h4></li>
+    <li class="node w"><h4>登壇の記録</h4></li>
+    <li class="node w"><h4>言語化された言葉</h4><p>クライアントが使い続けるもの</p></li>
+  </ul></div>
+
+</div>
+
+<!-- 三系統に共通するチェック。行の外に一本だけ置く -->
+<div class="common">
+  <p class="common__label">三系統に共通するチェック</p>
+  <ul class="common__list">
+    <li><h4>事実と推測が分かれているか</h4><p>現場で身につけた習慣。文章にもそのまま効く</p></li>
+    <li><h4>引き算が足りているか</h4><p>音楽で覚えた感覚。資料の組み立てにも使う</p></li>
+    <li><h4>受け取る人の負担は減ったか</h4><p>列 02 の基準に戻って確認する</p></li>
+  </ul>
+</div>
+</div>
+
+
+<footer class="foot">
+  <h3>この図の読み方</h3>
+  <ul>
+    <li>列 02「判断」を、すべての線が通ります。三つの領域は分かれているのではなく、同じ基準から枝分かれしています。</li>
+    <li>列 04「工程」を横に見比べると、三系統が同じ形をしていることが分かります。<strong>集める → 選ぶ → 削る → 渡す</strong>。呼び名が違うだけです。</li>
+    <li>列 06「チェック」の上3つは三系統に共通、下3つは系統ごとの固有のものです。共通のほうが多い、というのがこの図の結論です。</li>
+    <li>列 08 の最後が 01 に戻ります。単発の仕事ではなく循環として設計しています。</li>
+  </ul>
+
+  <h3>未記入の箇所</h3>
+  <ul>
+    <li>点線の囲み（要記入）が、埋まっていない箇所です。使用ソフト名、機材、紹介元など、事実を知らないものは空けてあります。</li>
+    <li>登壇で使う場合は、列 05「道具」を具体名で埋めると、話の説得力が大きく変わります。</li>
+  </ul>
+
+  <h3>注意</h3>
+  <ul>
+    <li>この図はサイトからリンクしていません。検索避けも入れてあります。公開したい場合は <code>robots</code> の行を消してください。</li>
+    <li>勤務先の企業名・製品名は一切入れていません。列 06 の「所属先の規定」を自分自身にも適用しています。</li>
+  </ul>
+</footer>
+
+</body>
+</html>
