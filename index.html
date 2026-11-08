@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--
+  ============================================================
+  杉田 亘 / Wataru Sugita — Personal Brand Site（日本語版）
+  ------------------------------------------------------------
+  構成： Hero / 01 Profile / 02 Expertise / 03 Works / 04 Presence / 05 Contact
+  ------------------------------------------------------------
+  ▼ 画像の入れかた
+     images/ フォルダをつくり、下記のファイル名で置くだけで反映されます。
+     ファイルが無いあいだは、無地の面として静かに成立します
+     （壊れた画像アイコンは出ません）。
+
+       images/hero-desk.jpg      16:9   静かな机。Hero 右のビジュアルパネル
+       images/works-lead.jpg      4:5   書く手と録る道具。Works の主画像
+       images/presence-north.jpg 16:9   北の街。Contact 直前の裁ち落とし
+
+     画像はこの3枚だけです。増やさないでください。
+     どれか無くても、そこは無地の面として静かに成立します。
+
+     位置を微調整したいときは style に --pos を足します。
+       style="--img:url(./images/xxx.jpg); --pos:50% 30%"
+
+  ▼ 差し替え箇所は [EDIT] で検索してください。
+  ▼ 未確定の値は "————" のままです。公開前に埋めてください。
+  ============================================================
+-->
+
+<title>杉田 亘｜医療機器営業 / AI音楽クリエイター / エッセイスト</title>
+<meta name="description" content="杉田亘（Wataru Sugita）。北海道を拠点に、外資系医療機器メーカーの営業、AI音楽の制作、エッセイの執筆を横断。現場の精度と、創作の余白を同じ手で扱う。仕事のご相談・登壇・取材を受け付けています。">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="杉田 亘｜医療機器営業 / AI音楽クリエイター / エッセイスト">
+<meta property="og:description" content="現場の精度と、創作の余白を同じ手で扱う。北海道発。">
+<meta property="og:url" content="https://example.com/"><!-- [EDIT] 公開ドメイン -->
+<meta property="og:image" content="https://example.com/ogp.jpg"><!-- [EDIT] 1200×630 -->
+<meta property="og:site_name" content="杉田 亘 / Wataru Sugita">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#070708">
+
+<link rel="canonical" href="https://example.com/"><!-- [EDIT] -->
+<link rel="alternate" hreflang="ja" href="https://example.com/"><!-- [EDIT] -->
+<link rel="alternate" hreflang="en" href="https://example.com/index-en.html"><!-- [EDIT] -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Shippori+Mincho:wght@400;500&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="./brand.css">
+</head>
+
+<body>
+
+<div class="bg" aria-hidden="true">
+  <div class="bg__glow"></div>
+  <div class="bg__grain"></div>
+</div>
+
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<a class="skip" href="#main">本文へスキップ</a>
+
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="#top">
+      <span class="nav__mark" aria-hidden="true"></span>
+      <span class="nav__name">杉田 亘</span>
+    </a>
+
+    <nav class="nav__links" aria-label="セクション">
+      <a href="#profile">Profile</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#works">Works</a>
+      <a href="#presence">Presence</a>
+    </nav>
+
+    <p class="nav__lang" aria-label="言語">
+      <span aria-current="true">JA</span>
+      <a href="./index-en.html" hreflang="en">EN</a>
+    </p>
+
+    <a class="btn btn--ghost nav__cta" href="#contact">ご相談</a>
+
+    <button class="nav__toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="drawer">
+      <span class="sr-only">メニューを開く</span>
+      <span class="nav__bars" aria-hidden="true"><i></i><i></i></span>
+    </button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" hidden>
+  <nav aria-label="メニュー">
+    <a href="#profile"><em>01</em>人物</a>
+    <a href="#expertise"><em>02</em>できること</a>
+    <a href="#works"><em>03</em>つくったもの</a>
+    <a href="#presence"><em>04</em>活動</a>
+    <a href="#contact"><em>05</em>ご連絡</a>
+    <a href="./index-en.html" hreflang="en"><em>—</em>English</a>
+  </nav>
+</div>
+
+
+<main id="main">
+
+<!-- ============================================================
+     HERO
+     右に画像パネルを裁ち落とし、左に文字を寄せる。
+     視線は画像に流れてから文字へ戻る。だから文字は短く、行長を詰める。
+     画像が無い状態でも、左の文字組だけで一画面が成立する骨格を保つ。
+     ============================================================ -->
+<section class="hero hero--split" id="top">
+  <div class="wrap hero__inner">
+
+    <p class="hero__eyebrow reveal">Hokkaido, Japan &nbsp;—&nbsp; N 43°</p>
+
+    <h1 class="hero__title reveal" data-delay="1">
+      <span class="hero__lead">精度と、余白。</span>
+      <span class="hero__sub">その両方を、同じ手で扱っています。</span>
+    </h1>
+
+    <div class="ident reveal" data-delay="2">
+      <p class="ident__name">杉田 亘<span>Wataru Sugita</span></p>
+
+      <ul class="titles">
+        <li>外資系医療機器メーカー営業</li>
+        <li>AI音楽クリエイター</li>
+        <li>エッセイスト</li>
+      </ul>
+    </div>
+
+    <p class="hero__body reveal" data-delay="3">
+      医療機器を病院に届け、AIで音楽をつくり、エッセイを書いています。
+      並列した三つの仕事ではなく、ひとつの仕事の三つの面だと考えています。
+    </p>
+
+    <div class="hero__actions reveal" data-delay="4">
+      <a class="btn btn--solid" href="#contact">仕事のご相談</a>
+      <a class="btn btn--ghost" href="#expertise">お引き受けできること</a>
+    </div>
+  </div>
+
+  <!-- 装飾ではなく壁として置く。alt は不要なので aria-hidden -->
+  <div class="hero__visual" aria-hidden="true"
+       style="--img:url(./images/hero-desk.jpg); --pos:38% 55%"></div>
+
+  <p class="hero__scroll" aria-hidden="true"><span></span>Scroll</p>
+</section>
+
+
+<!-- ============================================================
+     01 PROFILE
+     ここには画像を置かない。Hero と Works に主画像がある以上、
+     ここまで画像を続けると、文章が写真の説明文に落ちる。
+     密度を一度落とし、次の Expertise で情報量を上げる。
+     ============================================================ -->
+<section class="sec" id="profile">
+  <div class="wrap">
+
+    <div class="sec__head reveal">
+      <p class="sec__index"><em>01</em><span>Profile</span></p>
+      <h2 class="sec__title">肩書きが三つあるのではなく、<br>ひとつの仕事に出口が三つある。</h2>
+    </div>
+
+    <div class="duo">
+      <div class="phil__lead reveal">
+        <p>
+          複雑なものをほどいて、受け取る人が扱える形に置き直す。
+          何をしているのかと聞かれたら、結局はそれだけです。
+        </p>
+        <p>
+          手術室の隣で機器の話をするとき、それは導入設計や合意形成と呼ばれます。
+          八小節のループを組み直すときは編曲、一行を消すときは推敲と呼ばれます。
+          呼び名が変わるだけで、手つきは変わりません。
+          <strong>受け取る側の負担をどれだけ減らせるか</strong>で、いつも判断しています。
+        </p>
+        <p>
+          だから私にとって、医療の現場は創作の対極にありません。
+          誤解の余地を潰していく仕事を平日にしているから、
+          余白を残す仕事のほうも、どこを残すべきか迷わずに済んでいます。
+        </p>
+
+        <dl class="facts">
+          <div><dt>Name</dt><dd>杉田 亘（すぎた わたる）</dd></div>
+          <div><dt>Base</dt><dd>北海道</dd></div>
+          <div><dt>Work</dt><dd>医療機器 / 音楽 / 執筆</dd></div>
+          <div><dt>Contact</dt><dd><a href="#contact">メールでご連絡</a></dd></div>
+        </dl>
+      </div>
+
+      <blockquote class="phil__quote reveal" data-delay="1">
+        正確であることと、静かであること。<br>
+        この二つを守っていれば、扱う対象が
+        機器でも、音でも、文章でも、<br>同じ仕事になります。
+        <cite>— 制作と営業に共通して置いている基準</cite>
+      </blockquote>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     02 EXPERTISE
+     実務の中身と、依頼できること。医療と創作を並置し、分断させない。
+     ここは情報密度がいちばん高い区間。画像を置かず、文字だけで押す。
+     ============================================================ -->
+<section class="sec sec--alt" id="expertise">
+  <div class="wrap">
+
+    <div class="sec__head reveal">
+      <p class="sec__index"><em>02</em><span>Expertise</span></p>
+      <h2 class="sec__title">現場と、音と、言葉。</h2>
+      <p class="sec__note">本業と副業の区別はしていません。三つとも、同じ基準で引き受けています。</p>
+    </div>
+
+
+    <div class="fields">
+
+      <article class="field reveal">
+        <p class="field__label">Field</p>
+        <h3 class="field__title">医療機器を、<br>現場に届ける。</h3>
+        <p class="field__text">
+          外資系医療機器メーカーの営業として、医師・技師・購買・経営という
+          それぞれ別の言語を持つ人たちのあいだに立ちます。
+          売って終わりにせず、実際に使われる状態になるまでを担当だと考えています。
+        </p>
+        <ul class="field__list">
+          <li>製品説明とエビデンスの整理、院内提案資料の設計</li>
+          <li>多職種をまたぐ合意形成と、稟議の伴走</li>
+          <li>導入後の立ち上げ支援と運用の定着</li>
+          <li>地域の医療機関との長期的な関係構築</li>
+        </ul>
+      </article>
+
+      <article class="field reveal" data-delay="1">
+        <p class="field__label">Sound</p>
+        <h3 class="field__title">AIと、<br>音をつくる。</h3>
+        <p class="field__text">
+          生成AIを道具として、作詞から仕上げまでを一人で回します。
+          自動生成に任せきるのではなく、どれを選び、どれを捨てるかという
+          編集の判断を自分の責任で持つことを制作の軸にしています。
+        </p>
+        <ul class="field__list">
+          <li>オリジナル楽曲の制作とリリース</li>
+          <li>店舗・映像・イベント向けのBGM、サウンドロゴ</li>
+          <li>ブランドの世界観に合わせたトーン設計</li>
+          <li>AIを使った制作手順の共有と講座</li>
+        </ul>
+      </article>
+
+      <article class="field reveal" data-delay="2">
+        <p class="field__label">Words</p>
+        <h3 class="field__title">日々を、<br>言葉で残す。</h3>
+        <p class="field__text">
+          エッセイとPodcastで、働くこと、つくること、北海道で暮らすことを書き、話しています。
+          結論を急がず、迷っている途中のまま残すことを、書き手としての立場にしています。
+        </p>
+        <ul class="field__list">
+          <li>note でのエッセイ連載</li>
+          <li>Podcast の企画・収録・配信</li>
+          <li>寄稿、インタビュー、対談</li>
+          <li>企業やブランドのコンセプトの言語化</li>
+        </ul>
+      </article>
+
+    </div>
+
+    <dl class="fields__bridge reveal">
+      <dt>Through-line</dt>
+      <dd>
+        医療の現場で身につけた「事実と推測を分けて話す」習慣は、そのまま文章の書き方になりました。
+        音楽で覚えた「引き算で整える」感覚は、提案資料の組み立てに使っています。
+        三つを行き来しているというより、同じ道具を三つの場所で使っている、という感覚に近いです。
+        北海道という距離のある場所にいることも、この働き方を選んだ理由のひとつです。
+      </dd>
+    </dl>
+
+    <!-- 依頼の受け皿。番号付きの一覧で「品目」に見せる -->
+    <div class="sec__head reveal" style="margin-top: var(--gap-section);">
+      <p class="sec__index"><em>02.1</em><span>Offer</span></p>
+      <h2 class="sec__title">お引き受けできること。</h2>
+      <p class="sec__note">規模や時期によって対応が変わります。決まっていない段階でのご相談で構いません。</p>
+    </div>
+
+    <div class="offers">
+
+      <article class="offer reveal">
+        <p class="offer__no">01</p>
+        <h3 class="offer__title">登壇・講演</h3>
+        <div>
+          <p class="offer__body">専門職とAI、複数の肩書きを持って働くこと、地方から仕事をつくること。カンファレンス、企業研修、社内勉強会など。</p>
+          <p class="offer__tag">60〜90分 ／ オンライン可 ／ 全国対応</p>
+        </div>
+      </article>
+
+      <article class="offer reveal">
+        <p class="offer__no">02</p>
+        <h3 class="offer__title">楽曲・サウンド制作</h3>
+        <div>
+          <p class="offer__body">店舗BGM、映像用トラック、サウンドロゴ、イベントのテーマ曲。世界観のヒアリングから入り、試作を見ていただいてから進めます。</p>
+          <p class="offer__tag">ヒアリング → 試作 → 納品</p>
+        </div>
+      </article>
+
+      <article class="offer reveal">
+        <p class="offer__no">03</p>
+        <h3 class="offer__title">執筆・言語化</h3>
+        <div>
+          <p class="offer__body">エッセイの寄稿、インタビュー、ブランドのコンセプトやステートメントの言語化、オウンドメディアの編集。</p>
+          <p class="offer__tag">単発 ／ 連載 いずれも</p>
+        </div>
+      </article>
+
+      <article class="offer reveal">
+        <p class="offer__no">04</p>
+        <h3 class="offer__title">Podcast出演・対談</h3>
+        <div>
+          <p class="offer__body">番組へのゲスト出演、対談企画、モデレーター。医療、AI、創作、地方をテーマにお話しできます。</p>
+          <p class="offer__tag">収録60分目安 ／ リモート可</p>
+        </div>
+      </article>
+
+      <article class="offer reveal">
+        <p class="offer__no">05</p>
+        <h3 class="offer__title">医療機器まわりの相談</h3>
+        <div>
+          <p class="offer__body">営業組織の提案設計、医療機関向けコミュニケーションの整理など。所属先の規定に反しない範囲に限らせていただきます。</p>
+          <p class="offer__tag">個別にご相談</p>
+        </div>
+      </article>
+
+      <article class="offer reveal">
+        <p class="offer__no">06</p>
+        <h3 class="offer__title">取材・掲載</h3>
+        <div>
+          <p class="offer__body">メディア取材、記事掲載、プロフィールの提供。写真と略歴のデータはご連絡いただければお渡しします。</p>
+          <p class="offer__tag">随時受付</p>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="cta reveal">
+      <div>
+        <h3 class="cta__title">「これは頼めますか」から、で構いません。</h3>
+        <p class="cta__text">見積もりや条件が決まっていない段階のご相談を、いちばん多くいただいています。</p>
+      </div>
+      <div class="cta__actions">
+        <a class="btn btn--solid" href="#contact">メールで相談する</a>
+        <a class="btn btn--ghost" href="#works">制作を見る</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     03 WORKS
+     画像：1:1 の三点組み。音・言葉・声を同じ比率・同じ階調で並べ、
+     「ばらばらの趣味」ではなく「ひとつの制作」に見せる装置。
+     ============================================================ -->
+<section class="sec" id="works">
+  <div class="wrap">
+
+    <div class="duo">
+      <div class="works__head reveal">
+        <p class="sec__index"><em>03</em><span>Works</span></p>
+        <h2 class="sec__title">つくったもの、<br>続けているもの。</h2>
+        <p class="works__lead">
+          音も、言葉も、声も、同じ机の上から出ています。
+          道具を持ち替えているだけで、やっていることは変わりません。
+        </p>
+      </div>
+
+      <!-- 主画像はここ一枚だけ。顔ではなく手元を置く。
+           マイクとノートとヘッドフォンが一枚に収まっていること自体が、
+           三つの肩書きが同居している証拠になっている。 -->
+      <figure class="fig fig--45 reveal" data-delay="1" style="--img:url(./images/works-lead.jpg); --pos:55% 50%">
+        <div class="fig__frame"></div>
+        <figcaption class="fig__cap">書く手と、録る道具。順番を決めずに並んでいる。</figcaption>
+      </figure>
+    </div>
+
+    <ul class="works" style="margin-top: var(--gap-block);">
+
+      <li class="work reveal">
+        <a class="work__link" href="https://open.spotify.com/episode/5nxl2zf4zAGr6FjndgCTNS" target="_blank" rel="noopener">
+          <p class="work__kind">Podcast</p>
+          <div>
+            <h3 class="work__title">Podcast ／ Spotify<!-- [EDIT] 番組名 --></h3>
+            <p class="work__desc">医療の現場で考えたこと、音楽をつくって気づいたことを話しています。</p>
+          </div>
+          <p class="work__meta"><span>配信中</span><span>Spotify</span></p>
+        </a>
+      </li>
+
+      <li class="work reveal">
+        <a class="work__link" href="https://www.youtube.com/channel/UCaZUFAlCyHz7oBs5uHptUFw" target="_blank" rel="noopener">
+          <p class="work__kind">Music</p>
+          <div>
+            <h3 class="work__title">YouTube チャンネル<!-- [EDIT] チャンネル名 --></h3>
+            <p class="work__desc">AIを用いて制作したオリジナル楽曲を公開しています。</p>
+          </div>
+          <p class="work__meta"><span>公開中</span><span>YouTube</span></p>
+        </a>
+      </li>
+
+      <!-- 未公開。URL が決まったら、この行と、このブロック末尾の閉じ記号の行を
+           どちらも削除してください。
+      <li class="work reveal">
+        <a class="work__link" href="ここにURL">
+          <p class="work__kind">Essay</p>
+          <div>
+            <h3 class="work__title">note ／［連載名］</h3>
+            <p class="work__desc">仕事と創作のあいだにあるものについて。</p>
+          </div>
+          <p class="work__meta"><span>連載中</span><span>note</span></p>
+        </a>
+      </li>
+      -->
+
+      <!-- 未公開。URL が決まったら、この行と、このブロック末尾の閉じ記号の行を
+           どちらも削除してください。
+      <li class="work reveal">
+        <a class="work__link" href="ここにURL">
+          <p class="work__kind">Release</p>
+          <div>
+            <h3 class="work__title">［アルバム／楽曲名］</h3>
+            <p class="work__desc">オリジナル楽曲。各ストリーミングサービスで配信中。</p>
+          </div>
+          <p class="work__meta"><span>———— 年</span><span>———— 曲</span></p>
+        </a>
+      </li>
+      -->
+
+      <!-- 未公開。URL が決まったら、この行と、このブロック末尾の閉じ記号の行を
+           どちらも削除してください。
+      <li class="work reveal">
+        <a class="work__link" href="ここにURL">
+          <p class="work__kind">Talk</p>
+          <div>
+            <h3 class="work__title">［登壇イベント名］</h3>
+            <p class="work__desc">「専門職がAIで何をつくれるか」をテーマに登壇。</p>
+          </div>
+          <p class="work__meta"><span>———— 年</span><span>［主催］</span></p>
+        </a>
+      </li>
+      -->
+
+    </ul>
+
+    <p class="works__more reveal">
+      過去の制作・登壇の一覧は <a href="#contact">ご連絡</a> いただければお送りします。
+    </p>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     04 PRESENCE
+     北海道で、続けていること。風景は名所ではなく無名の場所を使う。
+     画像：21:9 の帯。ここだけ横に広く取り、呼吸を一度大きくする。
+     ============================================================ -->
+<section class="sec sec--alt" id="presence">
+  <div class="wrap">
+
+    <div class="sec__head reveal">
+      <p class="sec__index"><em>04</em><span>Presence</span></p>
+      <h2 class="sec__title">北で、続けている。</h2>
+      <p class="sec__note">遠さは不利ではありませんでした。距離があるぶん、届ける前に一度考える時間が要る。それが仕事のしかたを決めています。</p>
+    </div>
+
+    <ol class="timeline">
+      <li class="reveal">
+        <span class="timeline__year">01</span><!-- [EDIT] 西暦が決まったら 01〜04 を年に置き換え -->
+        <div>
+          <h3>医療機器業界へ</h3>
+          <p>営業職として医療現場に関わりはじめる。</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="timeline__year">02</span>
+        <div>
+          <h3>外資系メーカーへ</h3>
+          <p>より専門性の高い領域を担当。導入後の立ち上げまで一貫して伴走する進め方に切り替える。</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="timeline__year">03</span>
+        <div>
+          <h3>書きはじめる</h3>
+          <p>note でのエッセイ連載と Podcast の配信を開始。</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="timeline__year">04</span>
+        <div>
+          <h3>音をつくりはじめる</h3>
+          <p>生成AIを使ったオリジナル楽曲の制作と公開を本格化。</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="timeline__year">Now</span>
+        <div>
+          <h3>三つを並走</h3>
+          <p>現場・音・言葉を行き来しながら、依頼ベースで制作と登壇を受けています。</p>
+        </div>
+      </li>
+    </ol>
+
+    <!-- 登壇・採用・取材の担当者向け -->
+    <div class="press">
+      <div class="reveal">
+        <h3 class="press__title">登壇・取材のご担当者へ</h3>
+        <p class="press__lead">
+          告知にそのまま使える略歴を用意しています。ボタンを押すとコピーできます。
+          高解像度のポートレートや、英文プロフィールが必要な場合はご連絡ください。
+        </p>
+      </div>
+
+      <div class="press__box reveal">
+        <p class="press__label">Bio ／ 約200字</p>
+        <p class="press__body" id="bio200">杉田亘（すぎた・わたる）。北海道在住。外資系医療機器メーカーの営業として医療現場に立つ一方、生成AIを用いた音楽制作と、エッセイ・Podcastでの発信を続けている。専門性と創造性を切り分けず、複雑なものを受け取れる形に置き直す仕事として三つの領域を横断する。<!-- [EDIT] 代表作・受賞があれば追記 --></p>
+        <div class="press__actions">
+          <button type="button" data-copy="#bio200">略歴をコピー</button>
+          <a href="#contact">写真・詳細を請求</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Contact へ渡す前の一枚。ページで唯一、画面幅いっぱいに開く。
+       ここで一度大きく息を継いでから、最後の導線に入る。 -->
+  <figure class="fig fig--169 reveal bleed" style="--img:url(./images/presence-north.jpg); --pos:50% 60%">
+    <div class="fig__frame"></div>
+    <figcaption class="fig__cap">冬の終わり。坂の下に海がある、名前のない通り。</figcaption>
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     05 CONTACT
+     画像は置かない。直前の一枚で余韻はついている。
+     最後の一画面は、行動導線だけを残す。
+     ============================================================ -->
+<section class="sec sec--contact" id="contact">
+  <div class="wrap">
+    <div>
+      <div class="contact reveal">
+        <p class="sec__index"><em>05</em><span>Contact</span></p>
+        <h2 class="contact__title">はじめまして、の一通を<br>お待ちしています。</h2>
+
+        <p class="contact__text">
+          仕事のご依頼、登壇のご相談、取材、それ以外のご連絡も。<br>
+          下のアドレスまで直接お送りください。通常 2〜3営業日以内にご返信します。<!-- [EDIT] 返信目安 -->
+        </p>
+
+        <!-- 連絡先。フォームに変えたくなったら href を URL に差し替えるだけで済みます -->
+        <a class="contact__link" href="mailto:w.sugita@gmail.com?subject=%E3%81%94%E7%9B%B8%E8%AB%87">
+          w.sugita@gmail.com
+        </a>
+
+        <p class="contact__note">
+          ご依頼の場合、目的・時期・おおよその予算感を添えていただけると、初回のご返信で具体的にお答えできます。
+          件名は空欄のままで構いません。
+        </p>
+
+        <ul class="socials">
+          <li><a href="https://open.spotify.com/episode/5nxl2zf4zAGr6FjndgCTNS" target="_blank" rel="noopener">Podcast（Spotify）</a></li>
+          <li><a href="https://www.youtube.com/channel/UCaZUFAlCyHz7oBs5uHptUFw" target="_blank" rel="noopener">YouTube</a></li>
+        </ul>
+
+        <!-- note / X / Instagram を追加するとき：
+             上の閉じタグの直前に、URL を入れた行をこの形で足してください。
+             <li><a href="ここにURL" target="_blank" rel="noopener">note</a></li>
+             リンク先が空のまま公開すると、押しても何も起きないリンクになります。 -->
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <p class="foot__name">杉田 亘 <span>Wataru Sugita</span></p>
+    <p class="foot__copy">© <span id="year">2026</span> Wataru Sugita</p>
+    <a class="foot__top" href="#top">Back to top</a>
+  </div>
+</footer>
+
+<div class="dock" id="dock">
+  <a class="btn btn--solid" href="#contact">仕事のご相談・登壇のご依頼</a>
+</div>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "杉田 亘",
+  "alternateName": "Wataru Sugita",
+  "jobTitle": ["医療機器メーカー営業", "AI音楽クリエイター", "エッセイスト"],
+  "description": "北海道を拠点に、医療機器営業・AI音楽制作・エッセイ執筆を横断。",
+  "address": { "@type": "PostalAddress", "addressRegion": "北海道", "addressCountry": "JP" },
+  "url": "https://example.com/",
+  "sameAs": [
+    "https://open.spotify.com/episode/5nxl2zf4zAGr6FjndgCTNS",
+    "https://www.youtube.com/channel/UCaZUFAlCyHz7oBs5uHptUFw"
+  ]
+}
+</script>
+
+<script src="./brand.js"></script>
+</body>
+</html>

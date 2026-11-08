@@ -1,0 +1,22 @@
+# Netlify の設定ファイル
+# ------------------------------------------------------------
+# このサイトはビルド不要の静的サイトなので、
+# 「リポジトリのルートをそのまま公開する」とだけ書いてあります。
+
+[build]
+  publish = "."
+  command = ""
+
+# /en で英語版を開けるようにする（/index-en.html でも開けます）
+[[redirects]]
+  from = "/en"
+  to = "/index-en.html"
+  status = 200
+
+# 静的ファイルの基本的なセキュリティヘッダ
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"

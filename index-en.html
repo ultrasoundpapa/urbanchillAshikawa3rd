@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--
+  ============================================================
+  Wataru Sugita — Personal Brand Site (English)
+  ------------------------------------------------------------
+  Mirrors index.html section for section. Shares brand.css and brand.js.
+  Image slots use the same files as the Japanese page — see index.html
+  for the filename list. Search "[EDIT]" for anything still unset.
+  ============================================================
+-->
+
+<title>Wataru Sugita — Medical Device Sales / AI Music / Essays</title>
+<meta name="description" content="Wataru Sugita. Based in Hokkaido, Japan. Medical device sales for a global manufacturer, AI-assisted music, and essays. Precision and space, handled by the same hand. Available for talks, sound work, writing and interviews.">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Wataru Sugita — Medical Device Sales / AI Music / Essays">
+<meta property="og:description" content="Precision and space, handled by the same hand. Based in Hokkaido, Japan.">
+<meta property="og:url" content="https://example.com/index-en.html"><!-- [EDIT] -->
+<meta property="og:image" content="https://example.com/ogp.jpg"><!-- [EDIT] -->
+<meta property="og:site_name" content="Wataru Sugita">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#070708">
+
+<link rel="canonical" href="https://example.com/index-en.html"><!-- [EDIT] -->
+<link rel="alternate" hreflang="ja" href="https://example.com/"><!-- [EDIT] -->
+<link rel="alternate" hreflang="en" href="https://example.com/index-en.html"><!-- [EDIT] -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Shippori+Mincho:wght@400;500&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="./brand.css">
+</head>
+
+<body>
+
+<div class="bg" aria-hidden="true">
+  <div class="bg__glow"></div>
+  <div class="bg__grain"></div>
+</div>
+
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<a class="skip" href="#main">Skip to content</a>
+
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="#top">
+      <span class="nav__mark" aria-hidden="true"></span>
+      <span class="nav__name">Wataru Sugita</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#profile">Profile</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#works">Works</a>
+      <a href="#presence">Presence</a>
+    </nav>
+
+    <p class="nav__lang" aria-label="Language">
+      <a href="./index.html" hreflang="ja">JA</a>
+      <span aria-current="true">EN</span>
+    </p>
+
+    <a class="btn btn--ghost nav__cta" href="#contact">Contact</a>
+
+    <button class="nav__toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="drawer">
+      <span class="sr-only">Open menu</span>
+      <span class="nav__bars" aria-hidden="true"><i></i><i></i></span>
+    </button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" hidden>
+  <nav aria-label="Menu">
+    <a href="#profile"><em>01</em>Profile</a>
+    <a href="#expertise"><em>02</em>Expertise</a>
+    <a href="#works"><em>03</em>Works</a>
+    <a href="#presence"><em>04</em>Presence</a>
+    <a href="#contact"><em>05</em>Contact</a>
+    <a href="./index.html" hreflang="ja"><em>—</em>日本語</a>
+  </nav>
+</div>
+
+
+<main id="main">
+
+<!-- ===== HERO ===== -->
+<section class="hero hero--split" id="top">
+  <div class="wrap hero__inner">
+
+    <p class="hero__eyebrow reveal">Hokkaido, Japan &nbsp;—&nbsp; N 43°</p>
+
+    <h1 class="hero__title reveal" data-delay="1">
+      <span class="hero__lead">Precision, and space.</span>
+      <span class="hero__sub">Both handled by the same hand.</span>
+    </h1>
+
+    <div class="ident reveal" data-delay="2">
+      <p class="ident__name">Wataru Sugita<span>杉田 亘</span></p>
+
+      <ul class="titles">
+        <li>Medical Device Sales</li>
+        <li>AI Music Creator</li>
+        <li>Essayist</li>
+      </ul>
+    </div>
+
+    <p class="hero__body reveal" data-delay="3">
+      I bring medical devices into hospitals, make music with AI, and write essays.
+      Not three parallel jobs — three faces of one.
+    </p>
+
+    <div class="hero__actions reveal" data-delay="4">
+      <a class="btn btn--solid" href="#contact">Start a conversation</a>
+      <a class="btn btn--ghost" href="#expertise">What I take on</a>
+    </div>
+  </div>
+
+  <div class="hero__visual" aria-hidden="true"
+       style="--img:url(./images/hero-desk.jpg); --pos:38% 55%"></div>
+
+  <p class="hero__scroll" aria-hidden="true"><span></span>Scroll</p>
+</section>
+
+
+<!-- ===== 01 PROFILE ===== -->
+<section class="sec" id="profile">
+  <div class="wrap">
+
+    <div class="sec__head reveal">
+      <p class="sec__index"><em>01</em><span>Profile</span></p>
+      <h2 class="sec__title">Not three titles.<br>One job with three exits.</h2>
+    </div>
+
+    <div class="duo">
+      <div class="phil__lead reveal">
+        <p>
+          Take something complicated apart, and set it back down in a form
+          the other person can actually handle. Asked what I do, that is the whole answer.
+        </p>
+        <p>
+          Beside an operating room, that work is called implementation design, or building consensus.
+          Rebuilding eight bars, it is called arrangement. Cutting a line, revision.
+          Only the name changes; the hand does not.
+          <strong>How much weight can I take off the person receiving this</strong> —
+          that is the test, every time.
+        </p>
+        <p>
+          So the clinical floor is not the opposite of creative work for me.
+          Because my weekdays are spent closing off room for misreading,
+          I rarely hesitate about where to leave room open in the other work.
+        </p>
+
+        <dl class="facts">
+          <div><dt>Name</dt><dd>Wataru Sugita</dd></div>
+          <div><dt>Base</dt><dd>Hokkaido, Japan</dd></div>
+          <div><dt>Work</dt><dd>Devices / Music / Writing</dd></div>
+          <div><dt>Contact</dt><dd><a href="#contact">Email me</a></dd></div>
+        </dl>
+      </div>
+
+      <blockquote class="phil__quote reveal" data-delay="1">
+        Be accurate. Be quiet.<br>
+        Hold those two, and it stays the same job —<br>whether the material is
+        a device, a sound, or a sentence.
+        <cite>— the standard I apply to sales and to making alike</cite>
+      </blockquote>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===== 02 EXPERTISE ===== -->
+<section class="sec sec--alt" id="expertise">
+  <div class="wrap">
+
+    <div class="sec__head reveal">
+      <p class="sec__index"><em>02</em><span>Expertise</span></p>
+      <h2 class="sec__title">The floor, the sound, the words.</h2>
+      <p class="sec__note">I draw no line between a main job and a side one. All three are taken on by the same standard.</p>
+    </div>
+
+
+    <div class="fields">
+
+      <article class="field reveal">
+        <p class="field__label">Field</p>
+        <h3 class="field__title">Bringing devices<br>onto the floor.</h3>
+        <p class="field__text">
+          As a sales representative for a global medical device manufacturer, I stand between
+          physicians, technologists, procurement and management — four groups who speak
+          four different languages. The job is not done at the sale; it is done when the device is in use.
+        </p>
+        <ul class="field__list">
+          <li>Product briefings, evidence review, in-hospital proposal design</li>
+          <li>Cross-functional consensus and approval support</li>
+          <li>Post-installation onboarding and workflow adoption</li>
+          <li>Long-term relationships with regional institutions</li>
+        </ul>
+      </article>
+
+      <article class="field reveal" data-delay="1">
+        <p class="field__label">Sound</p>
+        <h3 class="field__title">Making music<br>alongside AI.</h3>
+        <p class="field__text">
+          I use generative AI as a tool and run everything from lyrics to final mix myself.
+          The point is not to hand the work over to the machine — it is to own the editorial
+          decisions of what to keep and what to throw away.
+        </p>
+        <ul class="field__list">
+          <li>Original tracks, written and released</li>
+          <li>BGM and sound logos for spaces, film and events</li>
+          <li>Tonal direction matched to a brand's world</li>
+          <li>Sharing practical AI production workflows</li>
+        </ul>
+      </article>
+
+      <article class="field reveal" data-delay="2">
+        <p class="field__label">Words</p>
+        <h3 class="field__title">Keeping the days<br>in language.</h3>
+        <p class="field__text">
+          Through essays and a podcast, I write and talk about working, making,
+          and living in Hokkaido. I try not to rush to a conclusion, and to leave
+          the uncertain middle of things intact.
+        </p>
+        <ul class="field__list">
+          <li>An ongoing essay series on note</li>
+          <li>Podcast planning, recording and release</li>
+          <li>Contributions, interviews, conversations</li>
+          <li>Articulating concepts for companies and brands</li>
+        </ul>
+      </article>
+
+    </div>
+
+    <dl class="fields__bridge reveal">
+      <dt>Through-line</dt>
+      <dd>
+        The habit the clinical floor taught me — separating fact from inference before speaking —
+        became, unchanged, the way I write. The instinct music taught me, that you finish a thing
+        by subtraction, is what I use to build a proposal deck. It feels less like moving between
+        three worlds than like using one set of tools in three places. Being in Hokkaido, at a
+        distance from the center, is part of why this way of working was possible at all.
+      </dd>
+    </dl>
+
+    <div class="sec__head reveal" style="margin-top: var(--gap-section);">
+      <p class="sec__index"><em>02.1</em><span>Offer</span></p>
+      <h2 class="sec__title">What I take on.</h2>
+      <p class="sec__note">Scope and timing change what is possible. An early, undecided enquiry is welcome.</p>
+    </div>
+
+    <div class="offers">
+
+      <article class="offer reveal">
+        <p class="offer__no">01</p>
+        <h3 class="offer__title">Talks &amp; lectures</h3>
+        <div>
+          <p class="offer__body">Specialists and AI; working under more than one title; building a practice from outside the major cities. Conferences, corporate training, internal sessions.</p>
+          <p class="offer__tag">60–90 min ／ remote available ／ Japan-wide</p>
+        </div>
+      </article>
+
+      <article class="offer reveal">
+        <p class="offer__no">02</p>
+        <h3 class="offer__title">Music &amp; sound</h3>
+        <div>
+          <p class="offer__body">Music for spaces, film and events, plus sound logos and themes. Always starts with a conversation about the world you are building, and a demo before we go further.</p>
+          <p class="offer__tag">Brief → demo → delivery</p>
+        </div>
+      </article>
+
+      <article class="offer reveal">
+        <p class="offer__no">03</p>
+        <h3 class="offer__title">Writing</h3>
+        <div>
+          <p class="offer__body">Essays, interviews, brand concepts and statements put into words, and editorial work for owned media.</p>
+          <p class="offer__tag">One-off or ongoing</p>
+        </div>
+      </article>
+
+      <article class="offer reveal">
+        <p class="offer__no">04</p>
+        <h3 class="offer__title">Podcast &amp; conversation</h3>
+        <div>
+          <p class="offer__body">Guest appearances, paired conversations, moderation. Healthcare, AI, making, and the regions.</p>
+          <p class="offer__tag">~60 min ／ remote available</p>
+        </div>
+      </article>
+
+      <article class="offer reveal">
+        <p class="offer__no">05</p>
+        <h3 class="offer__title">Medical device consulting</h3>
+        <div>
+          <p class="offer__body">Proposal design for sales organisations, and clearer communication with clinical institutions. Limited to what my employer's policy permits.</p>
+          <p class="offer__tag">Case by case</p>
+        </div>
+      </article>
+
+      <article class="offer reveal">
+        <p class="offer__no">06</p>
+        <h3 class="offer__title">Press &amp; interviews</h3>
+        <div>
+          <p class="offer__body">Media interviews, features, and profile material. Photography and biography files are available on request.</p>
+          <p class="offer__tag">Open</p>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="cta reveal">
+      <div>
+        <h3 class="cta__title">"Could you do this?" is a fine place to start.</h3>
+        <p class="cta__text">Most enquiries reach me before the budget or the scope is settled.</p>
+      </div>
+      <div class="cta__actions">
+        <a class="btn btn--solid" href="#contact">Write to me</a>
+        <a class="btn btn--ghost" href="#works">See the work</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===== 03 WORKS ===== -->
+<section class="sec" id="works">
+  <div class="wrap">
+
+    <div class="duo">
+      <div class="works__head reveal">
+        <p class="sec__index"><em>03</em><span>Works</span></p>
+        <h2 class="sec__title">Made, and<br>still going.</h2>
+        <p class="works__lead">
+          The sound, the words and the voice all come off the same desk.
+          Only the tool in hand changes; the work itself does not.
+        </p>
+      </div>
+
+      <figure class="fig fig--45 reveal" data-delay="1" style="--img:url(./images/works-lead.jpg); --pos:55% 50%">
+        <div class="fig__frame"></div>
+        <figcaption class="fig__cap">A writing hand, and the tools for recording. No order between them.</figcaption>
+      </figure>
+    </div>
+
+    <ul class="works" style="margin-top: var(--gap-block);">
+
+      <li class="work reveal">
+        <a class="work__link" href="https://open.spotify.com/episode/5nxl2zf4zAGr6FjndgCTNS" target="_blank" rel="noopener">
+          <p class="work__kind">Podcast</p>
+          <div>
+            <h3 class="work__title">Podcast on Spotify<!-- [EDIT] --></h3>
+            <p class="work__desc">Thoughts from the clinical floor, and what making music keeps teaching me.</p>
+          </div>
+          <p class="work__meta"><span>Ongoing</span><span>Spotify</span></p>
+        </a>
+      </li>
+
+      <li class="work reveal">
+        <a class="work__link" href="https://www.youtube.com/channel/UCaZUFAlCyHz7oBs5uHptUFw" target="_blank" rel="noopener">
+          <p class="work__kind">Music</p>
+          <div>
+            <h3 class="work__title">YouTube channel<!-- [EDIT] --></h3>
+            <p class="work__desc">Original tracks produced with generative AI.</p>
+          </div>
+          <p class="work__meta"><span>Ongoing</span><span>YouTube</span></p>
+        </a>
+      </li>
+
+      <!-- Not published yet. Delete this line and the closing line at the end
+           of this block once the URL exists.
+      <li class="work reveal">
+        <a class="work__link" href="URL">
+          <p class="work__kind">Essay</p>
+          <div>
+            <h3 class="work__title">note ／ [series name]</h3>
+            <p class="work__desc">On what sits between working and making.</p>
+          </div>
+          <p class="work__meta"><span>Ongoing</span><span>note</span></p>
+        </a>
+      </li>
+      -->
+
+      <!-- Not published yet. Delete this line and the closing line at the end
+           of this block once the URL exists.
+      <li class="work reveal">
+        <a class="work__link" href="URL">
+          <p class="work__kind">Release</p>
+          <div>
+            <h3 class="work__title">[album / track title]</h3>
+            <p class="work__desc">Original music, available on streaming services.</p>
+          </div>
+          <p class="work__meta"><span>————</span><span>———— tracks</span></p>
+        </a>
+      </li>
+      -->
+
+      <!-- Not published yet. Delete this line and the closing line at the end
+           of this block once the URL exists.
+      <li class="work reveal">
+        <a class="work__link" href="URL">
+          <p class="work__kind">Talk</p>
+          <div>
+            <h3 class="work__title">[event name]</h3>
+            <p class="work__desc">A talk on what specialists can build with AI.</p>
+          </div>
+          <p class="work__meta"><span>————</span><span>[organizer]</span></p>
+        </a>
+      </li>
+      -->
+
+    </ul>
+
+    <p class="works__more reveal">
+      A fuller list of past work and talks is available on <a href="#contact">request</a>.
+    </p>
+
+  </div>
+</section>
+
+
+<!-- ===== 04 PRESENCE ===== -->
+<section class="sec sec--alt" id="presence">
+  <div class="wrap">
+
+    <div class="sec__head reveal">
+      <p class="sec__index"><em>04</em><span>Presence</span></p>
+      <h2 class="sec__title">Still working, up north.</h2>
+      <p class="sec__note">Distance never turned out to be the disadvantage. Being far from the centre means something has to be thought through before it is sent — and that has shaped how I work.</p>
+    </div>
+
+    <ol class="timeline">
+      <li class="reveal">
+        <span class="timeline__year">01</span>
+        <div>
+          <h3>Into medical devices</h3>
+          <p>Began working with clinical institutions in a sales role.</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="timeline__year">02</span>
+        <div>
+          <h3>To a global manufacturer</h3>
+          <p>Took on a more specialised portfolio, and shifted to seeing each project through to adoption.</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="timeline__year">03</span>
+        <div>
+          <h3>Started writing</h3>
+          <p>Launched an essay series on note and began releasing a podcast.</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="timeline__year">04</span>
+        <div>
+          <h3>Started making music</h3>
+          <p>Moved AI-assisted original music from experiment to regular release.</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="timeline__year">Now</span>
+        <div>
+          <h3>All three, in parallel</h3>
+          <p>Moving between the floor, the sound and the words, and taking commissions and talks as they come.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="press">
+      <div class="reveal">
+        <h3 class="press__title">For organisers and press</h3>
+        <p class="press__lead">
+          A short biography is ready to use in announcements — the button copies it.
+          High-resolution portraits and a Japanese profile are available on request.
+        </p>
+      </div>
+
+      <div class="press__box reveal">
+        <p class="press__label">Bio ／ ~70 words</p>
+        <p class="press__body" id="bio200">Wataru Sugita is based in Hokkaido, Japan. He works on the clinical floor as a sales representative for a global medical device manufacturer, while producing original music with generative AI and publishing essays and a podcast. Refusing to separate expertise from creative practice, he treats all three as one job: taking something complicated apart and setting it back down in a form others can use.<!-- [EDIT] --></p>
+        <div class="press__actions">
+          <button type="button" data-copy="#bio200">Copy biography</button>
+          <a href="#contact">Request photos</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <figure class="fig fig--169 reveal bleed" style="--img:url(./images/presence-north.jpg); --pos:50% 60%">
+    <div class="fig__frame"></div>
+    <figcaption class="fig__cap">End of winter. A nameless street with the sea at the bottom of the hill.</figcaption>
+  </figure>
+</section>
+
+
+<!-- ===== 05 CONTACT ===== -->
+<section class="sec sec--contact" id="contact">
+  <div class="wrap">
+    <div>
+      <div class="contact reveal">
+        <p class="sec__index"><em>05</em><span>Contact</span></p>
+        <h2 class="contact__title">A first message<br>is always welcome.</h2>
+
+        <p class="contact__text">
+          Commissions, speaking, press, or anything else.<br>
+          Write to me directly — I usually reply within two to three business days.<!-- [EDIT] -->
+        </p>
+
+        <a class="contact__link" href="mailto:w.sugita@gmail.com?subject=Enquiry">
+          w.sugita@gmail.com
+        </a>
+
+        <p class="contact__note">
+          For commissions, including the purpose, the timing and a rough budget lets me answer concretely in the first reply.
+        </p>
+
+        <ul class="socials">
+          <li><a href="https://open.spotify.com/episode/5nxl2zf4zAGr6FjndgCTNS" target="_blank" rel="noopener">Podcast (Spotify)</a></li>
+          <li><a href="https://www.youtube.com/channel/UCaZUFAlCyHz7oBs5uHptUFw" target="_blank" rel="noopener">YouTube</a></li>
+        </ul>
+
+        <!-- To add note / X / Instagram, insert a row like this before the closing tag above:
+             <li><a href="URL" target="_blank" rel="noopener">note</a></li>
+             Never ship a row whose link is empty. -->
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <p class="foot__name">Wataru Sugita <span>杉田 亘</span></p>
+    <p class="foot__copy">© <span id="year">2026</span> Wataru Sugita</p>
+    <a class="foot__top" href="#top">Back to top</a>
+  </div>
+</footer>
+
+<div class="dock" id="dock">
+  <a class="btn btn--solid" href="#contact">Enquiries &amp; speaking</a>
+</div>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Wataru Sugita",
+  "alternateName": "杉田 亘",
+  "jobTitle": ["Medical Device Sales Representative", "AI Music Creator", "Essayist"],
+  "description": "Based in Hokkaido, Japan. Medical device sales, AI-assisted music, and essays.",
+  "address": { "@type": "PostalAddress", "addressRegion": "Hokkaido", "addressCountry": "JP" },
+  "url": "https://example.com/index-en.html",
+  "sameAs": [
+    "https://open.spotify.com/episode/5nxl2zf4zAGr6FjndgCTNS",
+    "https://www.youtube.com/channel/UCaZUFAlCyHz7oBs5uHptUFw"
+  ]
+}
+</script>
+
+<script src="./brand.js"></script>
+</body>
+</html>
